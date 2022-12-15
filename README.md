@@ -32,11 +32,11 @@ The API should be running on `http://localhost:8000`.
 
 The base URL is `http://localhost:8000/api`.
 
-### `/api/start`
+### `/start`
 
 Starts a game and stores session data. Returns a message confirmation of the game starting.
 
-### `/api/question`
+### `/question`
 
 Returns a randomly generated question, and provides a correct answer from one of the options.
 
@@ -74,7 +74,7 @@ Returns an object containing the options for a question and an ID from the optio
 }
 ```
 
-### `/api/score/<int:user_guess_id>`
+### `/score/<int:user_guess_id>`
 
 Takes the ID of the character that the user has guessed and validates this against the session's correct answer for the given question.
 
@@ -86,7 +86,7 @@ Example output:
 {"question_no": 2}
 ```
 
-### `/api/finish`
+### `/finish`
 
 Returns the total score for a player.
 
