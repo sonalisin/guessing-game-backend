@@ -1,8 +1,8 @@
 import requests
 import numpy as np
-
 def get_random_character_id():
     return np.random.randint(1, 7438)
+
 def get_character_appearances(data):
     media = []
     if(data["films"] or data["tvShows"]):

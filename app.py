@@ -1,7 +1,8 @@
 from flask import Flask, session
 from character_utils import create_character_question_data
-import numpy as np
 from flask_cors import CORS
+
+import numpy as np
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
@@ -15,6 +16,10 @@ def update_user_question():
     session["question"] = session["question"] + 1
     return session["question"]
 
+@app.route('/')
+def welcome():
+    return "Guess the Disney film API"
+
 @app.route('/api/start')
 def start_game():
     session["question"] = 1
@@ -24,7 +29,7 @@ def start_game():
 @app.route('/api/question')
 def create_question():
     characters = [create_character_question_data() for iter in range(4)]
-    # # pick a random character to be correct 
+    # pick a random character to be correct 
     correct_character_id = characters[np.random.randint(0,3)]["id"]
     question_no = get_question_no()
     session[question_no] = correct_character_id
@@ -42,3 +47,6 @@ def update_score(user_guess_id):
 def end_game():
     score = session['score']
     return {"score": score}
+
+if __name__ == '__main__':
+     app.run(debug=True, port=8000,host='0.0.0.0')
